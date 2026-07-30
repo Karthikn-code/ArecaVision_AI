@@ -25,22 +25,24 @@ BATCH_SIZE = 32
 EPOCHS = 15
 LEARNING_RATE = 1e-4
 
-# Disease Categories (Expanded 14 Classes)
+# Disease Categories (14 Classes — MUST match TF dataset alphabetical directory sort order)
+# tf.keras.utils.image_dataset_from_directory uses case-sensitive sort (uppercase before lowercase).
+# Verified actual order by running: dataset.class_names on the split dataset.
 CLASS_NAMES = [
-    "bud borer",
-    "healthy_foot",
-    "Healthy_Leaf",
-    "Healthy_Nut",
-    "Healthy_Trunk",
-    "Mahali_Koleroga",
-    "stem cracking",
-    "Stem_bleeding",
-    "yellow leaf disease",
-    "Arecanut_YellowBrownSpot",
-    "CCI_Caterpillars",
-    "WCLWD_DryingofLeaflets",
-    "WCLWD_Flaccidity",
-    "WCLWD_Yellowing"
+    "Arecanut_YellowBrownSpot",   # index 0  (TF sorted: A > C > H > H > H > M > S > W > W > W > b > h > s > y)
+    "CCI_Caterpillars",            # index 1
+    "Healthy_Leaf",                # index 2
+    "Healthy_Nut",                 # index 3
+    "Healthy_Trunk",               # index 4
+    "Mahali_Koleroga",             # index 5
+    "Stem_bleeding",               # index 6
+    "WCLWD_DryingofLeaflets",      # index 7
+    "WCLWD_Flaccidity",            # index 8
+    "WCLWD_Yellowing",             # index 9
+    "bud borer",                   # index 10
+    "healthy_foot",                # index 11
+    "stem cracking",               # index 12
+    "yellow leaf disease",         # index 13
 ]
 
 # Display Names for UI

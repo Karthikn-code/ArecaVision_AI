@@ -18,7 +18,7 @@ def get_model_path(model_name):
     clean_name = model_name.replace("-", "").lower()
     return os.path.join(SAVED_MODELS_DIR, f"{clean_name}.keras")
 
-def load_or_create_model(model_name, num_classes=9, compile_only=False):
+def load_or_create_model(model_name, num_classes=len(CLASS_NAMES), compile_only=False):
     """
     Tries to load a saved trained model safely. If not found, initializes a fresh
     model with ImageNet weights, compiles it, and returns it.
