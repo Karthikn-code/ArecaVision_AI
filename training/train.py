@@ -257,11 +257,19 @@ def train_model(model_name,
             save_best_only=True,
             verbose=1
         ),
-        tf.keras.callbacks.TensorBoard(
-            log_dir=os.path.join(RESULTS_DIR, "tensorboard", model_name.replace("-", "_")),
-            histogram_freq=1
-        )
     ]
+
+    # Optional TensorBoard logging if tensorboard is installed
+    try:
+        import tensorboard  # noqa: F401
+        callbacks.append(
+            tf.keras.callbacks.TensorBoard(
+                log_dir=os.path.join(RESULTS_DIR, "tensorboard", model_name.replace("-", "_")),
+                histogram_freq=1
+            )
+        )
+    except (ImportError, Exception):
+        logger.warning("TensorBoard not available in environment; skipping TensorBoard callback.")
 
     history_finetune = model.fit(
         train_ds,
