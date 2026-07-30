@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  arecavision-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arecavision_ai_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./results:/app/results
+      - ./recommendation:/app/recommendation
+    environment:
+      - TF_ENABLE_ONEDNN_OPTS=0
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped

@@ -1,0 +1,13 @@
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.git
+.gitignore
+.vscode
+.idea
+results/saved_models/*.keras
+results/split_dataset
+results/temp/*
+*.log

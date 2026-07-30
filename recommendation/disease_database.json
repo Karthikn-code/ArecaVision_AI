@@ -1,0 +1,310 @@
+{
+  "bud borer": {
+    "scientific_name": "Tirathaba rufivena",
+    "display_name": "Bud Borer (Inflorescence Caterpillar)",
+    "description": "A destructive pest infestation where caterpillar larvae bore into tender flower buds, inflorescence, and growing tips of the arecanut palm, severely reducing crop yield.",
+    "cause": "Larvae of the moth Tirathaba rufivena, which feed on tender plant parts.",
+    "symptoms": [
+      "Small bore holes on inflorescence and buttons.",
+      "Accumulation of fine frass (fecal matter) and web-like threads near bud bases.",
+      "Shedding of tender buttons and blackening of flowers.",
+      "Drying and yellowing of surrounding shoots."
+    ],
+    "treatment": {
+      "organic_control": "Spray Neem Oil (1-3% concentration) or apply Bacillus thuringiensis (Bt) formulations near the crown.",
+      "chemical_control": "Apply granular insecticide such as Phorate 10G (10g per palm) to the leaf axils, or spray Chlorpyriphos 20 EC (2 ml/liter) on inflorescences.",
+      "recommended_fungicide": "None (Pest infestation)",
+      "recommended_pesticide": "Chlorpyriphos 20 EC or Phorate 10G"
+    },
+    "preventive_measures": [
+      "Clean leaf crowns regularly to remove debris.",
+      "Install light traps in the plantation to monitor and capture adult moths.",
+      "Prune and destroy severely infested inflorescences immediately."
+    ]
+  },
+  "healthy_foot": {
+    "scientific_name": "N/A",
+    "display_name": "Healthy Foot (Base)",
+    "description": "The base and root zone of the palm are clean, sturdy, and free of any fungal rot or physical deformities. This is the optimal baseline state.",
+    "cause": "Excellent plantation management, proper drainage, and soil hygiene.",
+    "symptoms": [
+      "Firm, sound bark at the collar region.",
+      "Healthy root network visible near the soil surface without decay.",
+      "Absence of waterlogging or soft rot."
+    ],
+    "treatment": {
+      "organic_control": "Apply organic manure and compost annually to maintain soil nutrition.",
+      "chemical_control": "None required.",
+      "recommended_fungicide": "None",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Ensure proper sub-surface drainage to prevent water stagnation.",
+      "Avoid wounding the collar region during weeding operations."
+    ]
+  },
+  "Healthy_Leaf": {
+    "scientific_name": "N/A",
+    "display_name": "Healthy Leaf",
+    "description": "Foliage exhibits rich green coloring and uniform texture. Photosynthesis is optimal, indicating a healthy palm.",
+    "cause": "Balanced nutrient uptake and absence of leaf pathogens or sap-sucking vectors.",
+    "symptoms": [
+      "Dark green, symmetrical leaflets.",
+      "No spotting, yellowing, or leaf drying.",
+      "Flexible, healthy fronds."
+    ],
+    "treatment": {
+      "organic_control": "Ensure adequate nitrogen and potash compost levels.",
+      "chemical_control": "None required.",
+      "recommended_fungicide": "None",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Apply recommended doses of NPK fertilizers.",
+      "Provide micro-irrigation during dry summer months."
+    ]
+  },
+  "Healthy_Nut": {
+    "scientific_name": "N/A",
+    "display_name": "Healthy Nut (Fruit)",
+    "description": "Areca fruits are developing normally, displaying uniform size, smooth surfaces, and a healthy green-to-orange skin tone.",
+    "cause": "Balanced trace mineral uptake and optimal water availability.",
+    "symptoms": [
+      "Smooth rind with no blotches or cracks.",
+      "Heavy, dense bunches with high button retention.",
+      "No signs of rot or insect entry."
+    ],
+    "treatment": {
+      "organic_control": "Apply organic mulch around the root zone to conserve soil moisture.",
+      "chemical_control": "None required.",
+      "recommended_fungicide": "None",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Apply potassium-rich organic manure during the flowering phase.",
+      "Maintain a regular irrigation cycle to avoid fruit stress."
+    ]
+  },
+  "Healthy_Trunk": {
+    "scientific_name": "N/A",
+    "display_name": "Healthy Trunk",
+    "description": "The trunk is straight, uniform, and structurally solid without fissures, cracking, or bleeding spots.",
+    "cause": "Uniform growth conditions and protection from severe direct sun exposure.",
+    "symptoms": [
+      "Smooth trunk surface with clear leaf scars.",
+      "No bleeding or sap exudation.",
+      "No vertical structural fissures."
+    ],
+    "treatment": {
+      "organic_control": "None required.",
+      "chemical_control": "None required.",
+      "recommended_fungicide": "None",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Shade the trunks of young palms to protect them from sun scorch.",
+      "Avoid making cuts or wounds on the trunk during harvesting."
+    ]
+  },
+  "Mahali_Koleroga": {
+    "scientific_name": "Phytophthora palmivora",
+    "display_name": "Mahali / Koleroga (Fruit Rot)",
+    "description": "A highly destructive fungal disease active during heavy monsoons, causing massive shedding of immature nuts and crown rot if left unchecked.",
+    "cause": "Fungal pathogen Phytophthora palmivora, favored by continuous rain, high relative humidity, and cold temperatures.",
+    "symptoms": [
+      "Water-soaked lesions on the green nuts starting at the calyx.",
+      "Massive shedding of green, immature nuts.",
+      "White felt-like fungal growth on the fallen nuts.",
+      "Rotting of kernel tissues and characteristic foul smell."
+    ],
+    "treatment": {
+      "organic_control": "Apply bio-control agents like Trichoderma viride or Pseudomonas fluorescens mixed with neem cake to the soil base.",
+      "chemical_control": "Prophylactic spraying of 1% Bordeaux mixture before monsoon and again 40 days later. For active outbreaks, spray Metalaxyl + Mancozeb (2g/liter).",
+      "recommended_fungicide": "Bordeaux Mixture (1%) or Metalaxyl-Mancozeb",
+      "recommended_pesticide": "None (Fungal disease)"
+    },
+    "preventive_measures": [
+      "Collect and burn all fallen, diseased nuts to reduce soil spore load.",
+      "Ensure proper spacing between palms and thin out overlapping canopies to improve airflow.",
+      "Improve drainage to prevent stagnant water around palm feet."
+    ]
+  },
+  "stem cracking": {
+    "scientific_name": "Physiological Disorder",
+    "display_name": "Stem Cracking",
+    "description": "A non-pathogenic physiological disorder causing long, vertical structural cracks on the trunks, which exposes the inner fibers to secondary infections.",
+    "cause": "Sudden fluctuations in soil moisture (dry spells followed by heavy watering) combined with direct hot sun exposure (sun scorch).",
+    "symptoms": [
+      "Long vertical splits/fissures on the trunk, usually on the south-western side.",
+      "Fibrous inner tissues exposed to weather.",
+      "Gradual narrowing of the crown above the cracked trunk segment."
+    ],
+    "treatment": {
+      "organic_control": "Apply thick organic mulch (dry leaves, coir pith) around the base to keep soil moisture levels stable.",
+      "chemical_control": "Swab/paint the interior of the cracks with Bordeaux paste (10%) to prevent entry of wood-decaying fungi.",
+      "recommended_fungicide": "Bordeaux Paste",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Protect young palm trunks by white-washing them with lime (slaked lime) up to 2 meters high.",
+      "Wrap south-western side of trunks with dry areca leaves or thatch material.",
+      "Maintain a uniform drip irrigation schedule during summer months to avoid soil drying."
+    ]
+  },
+  "Stem_bleeding": {
+    "scientific_name": "Thielaviopsis paradoxa (Ceratocystis paradoxa)",
+    "display_name": "Stem Bleeding",
+    "description": "A serious fungal disease that attacks the trunk tissues, leading to discoloration, bleeding of dark sap, and internal decay of the palm wood.",
+    "cause": "Fungal infection Thielaviopsis paradoxa, typically entering through cracks or physical wounds under wet soil conditions.",
+    "symptoms": [
+      "Exudation of a dark, reddish-brown fluid from cracks on the lower trunk.",
+      "Blackening and softening of the trunk tissue around the bleeding points.",
+      "Hollowing or rot of inner wood upon cutting.",
+      "Yellowing and reduction in size of the leaf crown."
+    ],
+    "treatment": {
+      "organic_control": "Apply Trichoderma viride-enriched organic manures around the basin. Pour Neem cake extract into the root zone.",
+      "chemical_control": "Chisel out the infected bark tissue and paint the wound with Bordeaux paste or Tridemorph (Calixin) 5%.",
+      "recommended_fungicide": "Tridemorph (Calixin) or Bordeaux Paste",
+      "recommended_pesticide": "None"
+    },
+    "preventive_measures": [
+      "Avoid waterlogging at all costs by digging deep drainage channels.",
+      "Do not prune leaves too close to the stem or slash bark during field tasks.",
+      "White-wash the stem base to reflect sun rays and avoid heat cracks."
+    ]
+  },
+  "yellow leaf disease": {
+    "scientific_name": "Candidatus Phytoplasma",
+    "display_name": "Yellow Leaf Disease (YLD)",
+    "description": "An incurable phytoplasmal disease affecting the vascular system of the palm. It leads to progressive leaf yellowing, root decay, and ultimate death of the palm.",
+    "cause": "Phytoplasma bacteria, which are transmitted from palm to palm by vector insects like the plant hopper Proutista moesta.",
+    "symptoms": [
+      "Yellowing of inner leaflets, starting from the tips of lower leaves.",
+      "Leaflets become narrow, brittle, and crowded in the crown.",
+      "Areca nuts in affected palms turn dark, fibrous, and kernel gets decayed.",
+      "Rotting of roots and gradual drying of the entire leaf crown."
+    ],
+    "treatment": {
+      "organic_control": "Apply botanical insecticides such as neem-based sprays to suppress the plant hopper vectors.",
+      "chemical_control": "No cure exists for the phytoplasma itself. Control the vectors by spraying Imidacloprid 17.8 SL (0.3 ml/liter) or applying systemic Phorate to leaf bases.",
+      "recommended_fungicide": "None (Bacterial/Phytoplasma origin)",
+      "recommended_pesticide": "Imidacloprid or Phorate (to control insect vectors)"
+    },
+    "preventive_measures": [
+      "Uproot and completely burn severely infected palms to prevent spread to adjacent healthy palms.",
+      "Apply high doses of potassium (potash) fertilizer and organic compost to boost palm tolerance.",
+      "Plant YLD-resistant areca palm varieties if available in your zone."
+    ]
+  },
+  "Arecanut_YellowBrownSpot": {
+    "scientific_name": "Helminthosporium / Colletotrichum gloeosporioides",
+    "display_name": "Yellow Brown Leaf Spot",
+    "description": "Fungal leaf spot disease characterized by distinct yellowish-brown necrotic spots with dark halos on Areca palm fronds.",
+    "cause": "Fungal pathogens Colletotrichum gloeosporioides or Helminthosporium species, triggered by warm humid microclimates.",
+    "symptoms": [
+      "Small circular to irregular yellow spots appearing on tender leaflets.",
+      "Spot centers turn dark brown or greyish with dark reddish-brown borders.",
+      "Coalescence of spots leading to blighting and premature drying of leaflets."
+    ],
+    "treatment": {
+      "organic_control": "Spray Neem oil 3% or Pseudomonas fluorescens (20g/liter) at 15-day intervals.",
+      "chemical_control": "Foliar spray of Mancozeb 75 WP (2.5 g/liter) or Carbendazim 50 WP (1 g/liter).",
+      "recommended_fungicide": "Mancozeb 75 WP or Carbendazim 50 WP",
+      "recommended_pesticide": "None (Fungal origin)"
+    },
+    "preventive_measures": [
+      "Avoid overhead sprinkler irrigation that keeps leaves wet for prolonged periods.",
+      "Maintain adequate spacing between palms to ensure good canopy ventilation.",
+      "Remove and burn fallen infected fronds."
+    ]
+  },
+  "CCI_Caterpillars": {
+    "scientific_name": "Slug Caterpillar / Leaf Eating Caterpillar Complex",
+    "display_name": "Caterpillar Foliage Infestation",
+    "description": "Defoliating insect infestation where larvae feed voraciously on Areca leaflets, leaving behind skeletonized fronds.",
+    "cause": "Larvae of Limacodid moths and leaf-eating caterpillars feeding on leaf lamina.",
+    "symptoms": [
+      "Large irregular bite holes along leaflet margins.",
+      "Skeletonization of leaf fronds leaving only midribs intact.",
+      "Presence of caterpillar larvae and fecal pellets on lower leaf surfaces."
+    ],
+    "treatment": {
+      "organic_control": "Spray Bacillus thuringiensis (Bt) at 2g/liter or Neem seed kernel extract (NSKE 5%).",
+      "chemical_control": "Spray Quinalphos 25 EC (2 ml/liter) or Lambda-cyhalothrin 5 EC (1 ml/liter).",
+      "recommended_fungicide": "None (Pest infestation)",
+      "recommended_pesticide": "Quinalphos 25 EC or Lambda-cyhalothrin"
+    },
+    "preventive_measures": [
+      "Hand-pick and destroy egg masses and young larval clusters.",
+      "Install light traps in orchards to catch adult moths before egg laying.",
+      "Encourage natural predators like reduviid bugs and parasitic wasps."
+    ]
+  },
+  "WCLWD_DryingofLeaflets": {
+    "scientific_name": "Areca Leaf Wilt Complex (WCLWD)",
+    "display_name": "Leaf Wilt Disease - Drying Stage",
+    "description": "Advanced phase of leaf wilt disease where leaflets undergo severe necrosis, drying from tips inward, leading to reduced frond count.",
+    "cause": "Root system decay and vascular blockage associated with phytoplasmal infection and root rot complexes.",
+    "symptoms": [
+      "Necrotic brown drying progressing from leaflet tips toward the rachis.",
+      "Brittle, papery texture of affected foliage.",
+      "Stunted crown size and poor nut setting."
+    ],
+    "treatment": {
+      "organic_control": "Apply Trichoderma harzianum enriched neem cake (5 kg/palm/year) to root zone.",
+      "chemical_control": "Drench root zone with Copper Oxychloride (3 g/liter) and spray micro-nutrients.",
+      "recommended_fungicide": "Copper Oxychloride (COC 50 WP)",
+      "recommended_pesticide": "Systemic insecticide for leafhopper vectors"
+    },
+    "preventive_measures": [
+      "Ditch deep trenches around infected blocks to isolate root systems.",
+      "Apply balanced NPK fertilizer with magnesium sulphate and zinc sulphate.",
+      "Eliminate sucking insect vectors from palm crowns."
+    ]
+  },
+  "WCLWD_Flaccidity": {
+    "scientific_name": "Areca Leaf Wilt Complex (WCLWD)",
+    "display_name": "Leaf Wilt Disease - Drooping Stage",
+    "description": "Intermediate phase of leaf wilt disease characterized by drooping, flaccid leaflets that lose structural turgor pressure.",
+    "cause": "Vascular water transport disruption caused by root crown infection.",
+    "symptoms": [
+      "Downward bending and flaccidity of outer leaflets.",
+      "Ribbon-like curving of fronds.",
+      "Pale green to yellowish discoloration of canopy."
+    ],
+    "treatment": {
+      "organic_control": "Drench root basin with VAM (Vesicular Arbuscular Mycorrhiza) and bio-fertilizers.",
+      "chemical_control": "Apply micro-nutrient mixture (Boron, Zinc, Iron) and systemic fungicide.",
+      "recommended_fungicide": "Carbendazim + Mancozeb combination",
+      "recommended_pesticide": "Imidacloprid 17.8 SL"
+    },
+    "preventive_measures": [
+      "Ensure summer irrigation to relieve water stress.",
+      "Maintain organic mulch around palm basins.",
+      "Regularly inspect palms for early flaccidity signs."
+    ]
+  },
+  "WCLWD_Yellowing": {
+    "scientific_name": "Areca Leaf Wilt Complex (WCLWD)",
+    "display_name": "Leaf Wilt Disease - Yellowing Stage",
+    "description": "Early-stage leaf wilt manifestation featuring golden-yellow chlorosis across middle and lower leaf fronds.",
+    "cause": "Chlorophyll breakdown due to root damage and vector-transmitted wilt agents.",
+    "symptoms": [
+      "Bright yellowing of inner leaflets starting from lower whorls.",
+      "Green veins remaining briefly before full chlorosis.",
+      "Reduction in crown vigor and nut yield."
+    ],
+    "treatment": {
+      "organic_control": "Basal application of neem cake and bio-pesticides.",
+      "chemical_control": "Foliar spray of magnesium sulphate (10 g/liter) + micronutrients.",
+      "recommended_fungicide": "Fosetyl-Al or Mancozeb",
+      "recommended_pesticide": "Dimethoate 30 EC"
+    },
+    "preventive_measures": [
+      "Boost soil organic carbon with farmyard manure.",
+      "Control sap-sucking insect vectors promptly.",
+      "Avoid root injuries during inter-cultivation."
+    ]
+  }
+}
