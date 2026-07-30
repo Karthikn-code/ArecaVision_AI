@@ -109,7 +109,7 @@ def render_home_page():
     # Disease Overview Factsheet
     st.write("---")
     with st.expander("📖 Supported Disease Categories Factsheet"):
-        st.write("The system classifies images into these 9 categories:")
+        st.write("The system classifies images into these 14 categories:")
         for name in CLASS_NAMES:
             disp_name = DISPLAY_NAMES.get(name, name)
             is_healthy = "Healthy" in disp_name or "healthy" in name

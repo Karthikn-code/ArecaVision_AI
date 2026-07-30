@@ -1,19 +1,20 @@
-# 🌴 ArecaVision AI
+﻿# ArecaVision AI
 
 **AI-Powered Areca Nut Health Monitoring and Disease Diagnosis System**
 
-ArecaVision AI is a production-ready agricultural decision-support platform that uses **Deep Learning (CNNs)** and **Computer Vision** to automatically identify leaf, nut, and trunk diseases in areca nut palms. It provides **Grad-CAM explainability**, agronomic treatment recommendations, batch inference tools, and professional PDF diagnostic reports.
+ArecaVision AI is a production-ready agricultural decision-support platform that uses **Deep Learning (CNNs)** and **Computer Vision** to automatically identify leaf, nut, and trunk diseases in areca nut palms across **14 health/disease categories**. It provides Grad-CAM explainability, agronomic treatment recommendations, batch inference tools, and professional PDF diagnostic reports.
 
 ---
 
-## 🚀 Features
+## Features
 
 - **Multi-Model Inference**: EfficientNet-B0, MobileNetV3, ResNet50
-- **🤝 Ensemble Predictor**: Soft-vote averaging across all 3 models for maximum accuracy
+- **Ensemble Predictor**: Soft-vote averaging across all 3 models for maximum accuracy
 - **Grad-CAM Explainability**: Attention heatmaps showing which image regions drove the prediction
+- **14-Class Disease Taxonomy**: Covers all major arecanut pests, fungal diseases, and healthy states
 - **Confidence Threshold Guard**: Warns when model confidence falls below 50%
 - **Per-Class Probability Distribution**: Full softmax breakdown on every inference
-- **Agronomic Recommendations**: Symptoms, organic control, chemical control, and preventive measures
+- **Agronomic Recommendations**: Symptoms, organic control, chemical control, and preventive measures (English + Kannada)
 - **PDF Report Generator**: Professional diagnostic reports via `fpdf2`
 - **SQLite History Logging**: All predictions saved to a local database with search, filter, and pagination
 - **Analytics Dashboard**: Training curves, class distribution, top disease KPIs, and prediction history charts
@@ -21,20 +22,25 @@ ArecaVision AI is a production-ready agricultural decision-support platform that
 
 ---
 
-## 📦 Quickstart & Setup
+## Quickstart & Setup
 
 ```bash
 # 1. Clone repository & navigate to folder
-cd d:\Areca\ArecaVision_AI
+git clone https://github.com/Karthikn-code/ArecaVision_AI.git
+cd ArecaVision_AI
 
-# 2. Activate virtual environment
+# 2. Create and activate virtual environment
+python -m venv .venv
 .venv\Scripts\activate        # Windows
 # source .venv/bin/activate   # Linux/macOS
 
-# 3. Verify environment & initialize database
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Verify environment & initialize database
 python setup_project.py
 
-# 4. Launch Streamlit Web Application
+# 5. Launch Streamlit Web Application
 streamlit run run.py
 ```
 
@@ -42,139 +48,138 @@ The app will open at `http://localhost:8501`.
 
 ---
 
-## ⚡ Batch Inference (CLI)
+## Training
 
-Run disease detection on an entire folder of images without starting the GUI:
-
-```bash
-# Run batch inference with Ensemble model
-python utils/batch_inference.py --input d:/path/to/farm_photos --ensemble
-
-# Run batch inference with specific model
-python utils/batch_inference.py --input d:/path/to/farm_photos --model EfficientNet-B0
-```
-
-Outputs:
-- `results/batch_results_<timestamp>.csv` — Full per-image breakdown
-- `results/batch_summary_<timestamp>.json` — Aggregate statistics and disease frequency
-
----
-
-## 🗂️ Dataset Setup
-
-Place the Arecanut dataset at:
-```
-d:\Areca\archive\Arecanut_dataset\Arecanut_dataset\
-```
-
-The dataset should have subdirectories matching the 9 class names defined in `config/config.py`.
-
----
-
-## 🏋️ Training
-
-The training pipeline uses **two-stage transfer learning** with class-weighted loss:
+The training pipeline uses **two-stage transfer learning** with cosine LR warmup and class-weighted loss:
 
 ```bash
-# Train all 3 models sequentially (recommended)
-python training/train.py --all --epochs 10 --batch_size 32
+# Train all 3 models sequentially (recommended, avoids OOM on CPU)
+python training/train.py --all --batch_size 16 --warmup_epochs 5 --epochs 15
 
 # Train a single model
-python training/train.py --model EfficientNet-B0 --epochs 10
-python training/train.py --model MobileNetV3 --epochs 10
-python training/train.py --model ResNet50 --epochs 10
-
-# Custom hyperparameters
-python training/train.py --model ResNet50 --epochs 20 --batch_size 16 --lr 5e-5 --warmup_epochs 5
+python training/train.py --model EfficientNet-B0 --batch_size 16
+python training/train.py --model MobileNetV3    --batch_size 16
+python training/train.py --model ResNet50        --batch_size 16
 ```
 
-### Two-Stage Training Strategy:
-| Stage | Description | Default Epochs |
-|---|---|---|
-| **Stage 1 — Head Warmup** | Backbone frozen, trains classification head only | 5 |
-| **Stage 2 — Backbone Fine-Tuning** | Top 40 backbone layers unfrozen, end-to-end fine-tuning at lr=1e-5 | 10 |
+### Two-Stage Training Strategy
 
-### Expected Accuracy:
-| Model | Val Accuracy |
-|---|---|
-| EfficientNet-B0 | ~98–99% |
-| MobileNetV3 | ~95–97% |
-| ResNet50 | ~94–97% |
-| **Ensemble (All 3)** | **~98–99%** |
+| Stage | Description | Default |
+|---|---|---|
+| **Stage 1 — Head Warmup** | Backbone frozen; trains classification head with Adam + WarmupCosineDecay | 5 epochs |
+| **Stage 2 — Fine-Tuning** | Top 60 backbone layers unfrozen; AdamW + EarlyStopping + ReduceLROnPlateau | 15 epochs |
+
+> **Note**: TensorFlow >= 2.11 does not support GPU on native Windows. Use WSL2 or DirectML plugin for GPU acceleration.
 
 ---
 
-## 📊 Evaluation
+## Evaluation
 
 After training, generate test-set evaluation metrics:
+
 ```bash
 python evaluation/evaluator.py
 ```
 
-This outputs:
-- `results/model_comparison.json` — test accuracy, precision, recall, F1
-- Confusion matrix plots in `results/`
-- ROC curve plots in `results/`
+Outputs saved to `results/`:
+- `model_comparison.json` — per-model accuracy, precision, recall, F1
+- `*_confusion_matrix.png` — 14×14 confusion matrix plots
+- `*_roc_curve.png` — per-class ROC curves
 
 ---
 
-## 🏗️ Project Structure
+## Batch Inference (CLI)
+
+```bash
+# Run batch inference with Ensemble model
+python utils/batch_inference.py --input /path/to/farm_photos --ensemble
+
+# Run batch inference with specific model
+python utils/batch_inference.py --input /path/to/farm_photos --model EfficientNet-B0
+```
+
+---
+
+## Project Structure
 
 ```
 ArecaVision_AI/
-├── augmentation/       # Image preprocessing and augmentation (Bilateral denoising)
-├── config/             # App-wide configuration (class names, paths, hyperparams)
-├── dashboard/          # Plotly analytics and training curve generators
-├── database/           # SQLite prediction history manager
-├── documentation/      # System architecture documentation
-├── evaluation/         # Model evaluation: accuracy, confusion matrix, ROC
-├── gradcam/            # Grad-CAM heatmap computation and overlay
+├── augmentation/           # Image augmentation pipeline (flip, rotation, zoom, brightness)
+├── config/
+│   └── config.py           # CLASS_NAMES (14, alphabetical TF sort), paths, hyperparams
+├── dashboard/              # Plotly analytics and training curve generators
+├── database/               # SQLite prediction history manager
+├── evaluation/
+│   └── evaluator.py        # Model evaluation: accuracy, confusion matrix, ROC curves
+├── gradcam/
+│   └── gradcam.py          # Grad-CAM heatmap computation and overlay
 ├── models/
-│   ├── architectures.py    # EfficientNet-B0, MobileNetV3, ResNet50 builders
-│   └── model_registry.py   # Load/create/ensemble_predict functions
-├── recommendation/     # JSON-backed disease recommendation engine
-├── reports/            # PDF diagnostic report generator
-├── results/            # Saved models, training history, evaluation outputs
+│   ├── architectures.py    # EfficientNet-B0, MobileNetV3, ResNet50 builders (14-class head)
+│   └── model_registry.py   # Load/create/ensemble_predict helpers
+├── object_detection/       # Leaf spot detector (TF Object Detection API)
+├── preprocessing/
+│   └── data_prep.py        # Dataset split (70/15/15), deduplication, corruption check
+├── recommendation/
+│   ├── disease_database.json   # English agronomic recommendations for all 14 classes
+│   ├── engine.py               # Recommendation lookup engine
+│   └── translations.py         # Kannada (ಕನ್ನಡ) translations for all 14 classes
+├── reports/                # PDF diagnostic report generator
+├── results/
+│   ├── saved_models/       # Trained .keras model files (gitignored)
+│   └── split_dataset/      # Train/Val/Test splits (gitignored)
 ├── streamlit_app/
-│   ├── app.py              # Main app
 │   └── pages/
-│       ├── detection.py    # Main inference page
+│       ├── detection.py    # Main inference + Grad-CAM page
 │       ├── dashboard.py    # Analytics dashboard
-│       ├── documentation.py# User guide and model accuracy metrics
 │       ├── history.py      # Paginated prediction history
-│       ├── home.py         # Landing page with live accuracy metrics
-│       ├── about.py        # About the system
-│       └── settings.py     # System settings & cache cleanup
+│       └── home.py         # Landing page
+├── tests/                  # Unit tests (unittest)
 ├── training/
-│   └── train.py            # Two-stage training pipeline
+│   └── train.py            # Two-stage training pipeline with WarmupCosineDecay
 ├── utils/
-│   ├── batch_inference.py  # Bulk folder inference CLI tool
-│   ├── inference_helper.py# Consolidated single-image inference logic
+│   ├── batch_inference.py  # Bulk folder inference CLI
+│   ├── inference_helper.py # Single-image inference helper
+│   ├── severity_estimator.py # HSV-based disease severity scorer
 │   └── logger.py           # Unified file + console logger
-├── run.py              # Main entry point for Streamlit app
-├── setup_project.py    # One-click setup & environment check
+├── run.py                  # Streamlit app entry point
+├── setup_project.py        # One-click setup & environment check
 ├── requirements.txt
-└── README.md
+└── Dockerfile
 ```
 
 ---
 
-## 📝 Disease & Health Categories Supported
+## Disease & Health Categories (14 Classes)
 
-| Index | Class Name | Category |
-|---|---|---|
-| 1 | `bud borer` | ⚠️ Pest Infestation |
-| 2 | `healthy_foot` | ✅ Healthy Base |
-| 3 | `Healthy_Leaf` | ✅ Healthy Foliage |
-| 4 | `Healthy_Nut` | ✅ Healthy Fruit |
-| 5 | `Healthy_Trunk` | ✅ Healthy Stem |
-| 6 | `Mahali_Koleroga` | ⚠️ Fungal Disease |
-| 7 | `stem cracking` | ⚠️ Structural Disorder |
-| 8 | `Stem_bleeding` | ⚠️ Fungal Disease |
-| 9 | `yellow leaf disease` | ⚠️ Phytoplasmal Disease |
+> **Important**: Class indices follow TensorFlow's case-sensitive alphabetical sort of folder names.
+
+| Index | Class Name | Display Name | Category |
+|---|---|---|---|
+| 0 | `Arecanut_YellowBrownSpot` | Yellow Brown Leaf Spot | ⚠️ Fungal Disease |
+| 1 | `CCI_Caterpillars` | Caterpillar Foliage Infestation | ⚠️ Pest Infestation |
+| 2 | `Healthy_Leaf` | Healthy Leaf | ✅ Healthy |
+| 3 | `Healthy_Nut` | Healthy Nut | ✅ Healthy |
+| 4 | `Healthy_Trunk` | Healthy Trunk | ✅ Healthy |
+| 5 | `Mahali_Koleroga` | Mahali / Koleroga (Fruit Rot) | ⚠️ Fungal Disease |
+| 6 | `Stem_bleeding` | Stem Bleeding | ⚠️ Fungal Disease |
+| 7 | `WCLWD_DryingofLeaflets` | Leaf Wilt / WCLWD (Drying) | ⚠️ Phytoplasmal |
+| 8 | `WCLWD_Flaccidity` | Leaf Wilt / WCLWD (Drooping) | ⚠️ Phytoplasmal |
+| 9 | `WCLWD_Yellowing` | Leaf Wilt / WCLWD (Yellowing) | ⚠️ Phytoplasmal |
+| 10 | `bud borer` | Bud Borer (Pest) | ⚠️ Pest Infestation |
+| 11 | `healthy_foot` | Healthy Foot / Base | ✅ Healthy |
+| 12 | `stem cracking` | Stem Cracking | ⚠️ Structural Disorder |
+| 13 | `yellow leaf disease` | Yellow Leaf Disease | ⚠️ Phytoplasmal |
 
 ---
 
-## 📄 License
+## Key Technical Notes
 
-This project is for educational and research purposes.
+- **CLASS_NAMES order**: Must match `tf.keras.utils.image_dataset_from_directory` output which sorts folder names in **case-sensitive alphabetical order** (uppercase before lowercase). Verified with `dataset.class_names`.
+- **Label smoothing**: 0.1 applied during warmup stage to prevent overconfidence.
+- **Batch size**: Use `--batch_size 16` on CPU to avoid OOM. GPU users can use 32.
+
+---
+
+## License
+
+This project is for educational and research purposes — Final Year AI & Data Science Project.

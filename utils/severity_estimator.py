@@ -39,7 +39,8 @@ def estimate_disease_severity(image_np: np.ndarray, predicted_class: str,
             - affected_area_pixels: int
             - total_plant_pixels: int
     """
-    healthy_classes = {"healthy_foot", "Healthy_Leaf", "Healthy_Nut", "Healthy_Trunk"}
+    # All class names that represent healthy palm states (no disease lesion analysis needed)
+    healthy_classes = frozenset({"healthy_foot", "Healthy_Leaf", "Healthy_Nut", "Healthy_Trunk"})
 
     if predicted_class in healthy_classes:
         return {
