@@ -67,7 +67,7 @@ def calculate_class_weights(train_ds):
     labels_list = np.array(labels_list)
     classes = np.unique(labels_list)
     weights = compute_class_weight(class_weight='balanced', classes=classes, y=labels_list)
-    class_weight_dict = dict(zip(classes, weights))
+    class_weight_dict = {int(c): float(w) for c, w in zip(classes, weights)}
     logger.info(f"Calculated Class Weights: {class_weight_dict}")
     return class_weight_dict
 
