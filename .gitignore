@@ -16,6 +16,7 @@ results/areca_health.db
 results/temp/
 results/split_dataset/
 results/saved_models/
+results/tensorboard/
 results/*.png
 results/*.json
 results/*.log
