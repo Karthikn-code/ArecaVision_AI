@@ -21,6 +21,30 @@ def render_about_page():
     
     By freezing the convolutional feature extraction backbones and fine-tuning dense classification layers, we achieve high accuracy with significantly smaller training sizes.
     """)
+
+    # 14-Class Taxonomy Table
+    st.write("---")
+    st.markdown("### 📋 Disease & Health Categories (14 Classes)")
+    st.caption("🔒 *Important: Class indices follow TensorFlow's case-sensitive alphabetical sort of folder names.*")
+
+    st.markdown("""
+| Index | Class Name | Display Name | Category |
+| :---: | :--- | :--- | :--- |
+| **0** | `Arecanut_YellowBrownSpot` | Yellow Brown Leaf Spot | ⚠️ **Fungal Disease** |
+| **1** | `CCI_Caterpillars` | Caterpillar Foliage Infestation | ⚠️ **Pest Infestation** |
+| **2** | `Healthy_Leaf` | Healthy Leaf | ✅ **Healthy** |
+| **3** | `Healthy_Nut` | Healthy Nut | ✅ **Healthy** |
+| **4** | `Healthy_Trunk` | Healthy Trunk | ✅ **Healthy** |
+| **5** | `Mahali_Koleroga` | Mahali / Koleroga (Fruit Rot) | ⚠️ **Fungal Disease** |
+| **6** | `Stem_bleeding` | Stem Bleeding | ⚠️ **Fungal Disease** |
+| **7** | `WCLWD_DryingofLeaflets` | Leaf Wilt / WCLWD (Drying) | ⚠️ **Phytoplasmal** |
+| **8** | `WCLWD_Flaccidity` | Leaf Wilt / WCLWD (Drooping) | ⚠️ **Phytoplasmal** |
+| **9** | `WCLWD_Yellowing` | Leaf Wilt / WCLWD (Yellowing) | ⚠️ **Phytoplasmal** |
+| **10** | `bud borer` | Bud Borer (Pest) | ⚠️ **Pest Infestation** |
+| **11** | `healthy_foot` | Healthy Foot / Base | ✅ **Healthy** |
+| **12** | `stem cracking` | Stem Cracking | ⚠️ **Structural Disorder** |
+| **13** | `yellow leaf disease` | Yellow Leaf Disease | ⚠️ **Phytoplasmal** |
+""", unsafe_allow_html=True)
     
     # Future Scope Section
     st.write("---")
@@ -43,3 +67,4 @@ def render_about_page():
         * **Offline Mode**: Running lightweight models offline on mobile devices.
         * **GPS Mapping**: Marking diseased trees on a map for localized spraying.
         """)
+

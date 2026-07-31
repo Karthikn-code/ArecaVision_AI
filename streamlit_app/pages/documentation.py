@@ -10,12 +10,37 @@ def render_documentation_page():
     st.write("---")
     
     # Navigation sub-tabs
-    tab_guide, tab_arch, tab_train, tab_api = st.tabs([
+    tab_guide, tab_tax, tab_arch, tab_train, tab_api = st.tabs([
         "🚀 Quickstart Manual",
+        "📋 14-Class Taxonomy",
         "📐 System Architecture",
         "🏋️ Training Guide",
         "🔑 Model Accuracy"
     ])
+    
+    with tab_tax:
+        st.markdown("### 📋 Disease & Health Categories (14 Classes)")
+        st.caption("🔒 *Important: Class indices follow TensorFlow's case-sensitive alphabetical sort of folder names.*")
+
+        st.markdown("""
+| Index | Class Name | Display Name | Category |
+| :---: | :--- | :--- | :--- |
+| **0** | `Arecanut_YellowBrownSpot` | Yellow Brown Leaf Spot | ⚠️ **Fungal Disease** |
+| **1** | `CCI_Caterpillars` | Caterpillar Foliage Infestation | ⚠️ **Pest Infestation** |
+| **2** | `Healthy_Leaf` | Healthy Leaf | ✅ **Healthy** |
+| **3** | `Healthy_Nut` | Healthy Nut | ✅ **Healthy** |
+| **4** | `Healthy_Trunk` | Healthy Trunk | ✅ **Healthy** |
+| **5** | `Mahali_Koleroga` | Mahali / Koleroga (Fruit Rot) | ⚠️ **Fungal Disease** |
+| **6** | `Stem_bleeding` | Stem Bleeding | ⚠️ **Fungal Disease** |
+| **7** | `WCLWD_DryingofLeaflets` | Leaf Wilt / WCLWD (Drying) | ⚠️ **Phytoplasmal** |
+| **8** | `WCLWD_Flaccidity` | Leaf Wilt / WCLWD (Drooping) | ⚠️ **Phytoplasmal** |
+| **9** | `WCLWD_Yellowing` | Leaf Wilt / WCLWD (Yellowing) | ⚠️ **Phytoplasmal** |
+| **10** | `bud borer` | Bud Borer (Pest) | ⚠️ **Pest Infestation** |
+| **11** | `healthy_foot` | Healthy Foot / Base | ✅ **Healthy** |
+| **12** | `stem cracking` | Stem Cracking | ⚠️ **Structural Disorder** |
+| **13** | `yellow leaf disease` | Yellow Leaf Disease | ⚠️ **Phytoplasmal** |
+""", unsafe_allow_html=True)
+
     
     with tab_guide:
         st.markdown("""
