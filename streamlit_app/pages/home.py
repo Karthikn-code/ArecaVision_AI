@@ -108,10 +108,25 @@ def render_home_page():
 
     # Disease Overview Factsheet
     st.write("---")
-    with st.expander("📖 Supported Disease Categories Factsheet"):
-        st.write("The system classifies images into these 14 categories:")
-        for name in CLASS_NAMES:
-            disp_name = DISPLAY_NAMES.get(name, name)
-            is_healthy = "Healthy" in disp_name or "healthy" in name
-            emoji = "✅" if is_healthy else "⚠️"
-            st.markdown(f"**{emoji} {disp_name}** - *{'Baseline health state' if is_healthy else 'Diseased/Disorder condition'}*")
+    st.markdown("### 📋 Disease & Health Categories (14 Classes)")
+    st.caption("🔒 *Important: Class indices follow TensorFlow's case-sensitive alphabetical sort of folder names.*")
+
+    st.markdown("""
+| Index | Class Name | Display Name | Category |
+| :---: | :--- | :--- | :--- |
+| **0** | `Arecanut_YellowBrownSpot` | Yellow Brown Leaf Spot | ⚠️ **Fungal Disease** |
+| **1** | `CCI_Caterpillars` | Caterpillar Foliage Infestation | ⚠️ **Pest Infestation** |
+| **2** | `Healthy_Leaf` | Healthy Leaf | ✅ **Healthy** |
+| **3** | `Healthy_Nut` | Healthy Nut | ✅ **Healthy** |
+| **4** | `Healthy_Trunk` | Healthy Trunk | ✅ **Healthy** |
+| **5** | `Mahali_Koleroga` | Mahali / Koleroga (Fruit Rot) | ⚠️ **Fungal Disease** |
+| **6** | `Stem_bleeding` | Stem Bleeding | ⚠️ **Fungal Disease** |
+| **7** | `WCLWD_DryingofLeaflets` | Leaf Wilt / WCLWD (Drying) | ⚠️ **Phytoplasmal** |
+| **8** | `WCLWD_Flaccidity` | Leaf Wilt / WCLWD (Drooping) | ⚠️ **Phytoplasmal** |
+| **9** | `WCLWD_Yellowing` | Leaf Wilt / WCLWD (Yellowing) | ⚠️ **Phytoplasmal** |
+| **10** | `bud borer` | Bud Borer (Pest) | ⚠️ **Pest Infestation** |
+| **11** | `healthy_foot` | Healthy Foot / Base | ✅ **Healthy** |
+| **12** | `stem cracking` | Stem Cracking | ⚠️ **Structural Disorder** |
+| **13** | `yellow leaf disease` | Yellow Leaf Disease | ⚠️ **Phytoplasmal** |
+""", unsafe_allow_html=True)
+
