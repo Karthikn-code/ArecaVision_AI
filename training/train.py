@@ -71,6 +71,7 @@ def calculate_class_weights(train_ds):
 # ─────────────────────────────────────────────────────────────────────────────
 #  Cosine Annealing LR Schedule with Warm Restarts
 # ─────────────────────────────────────────────────────────────────────────────
+@tf.keras.saving.register_keras_serializable(package="Custom")
 class WarmupCosineDecay(tf.keras.optimizers.schedules.LearningRateSchedule):
     """
     Linear warmup for `warmup_steps`, then cosine decay to `min_lr`.
@@ -242,13 +243,6 @@ def train_model(model_name,
             monitor="val_accuracy",
             patience=8,
             restore_best_weights=True,
-            verbose=1
-        ),
-        tf.keras.callbacks.ReduceLROnPlateau(
-            monitor="val_loss",
-            factor=0.4,
-            patience=3,
-            min_lr=1e-8,
             verbose=1
         ),
         tf.keras.callbacks.ModelCheckpoint(

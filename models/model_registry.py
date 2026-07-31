@@ -5,6 +5,11 @@ from config.config import SAVED_MODELS_DIR, CLASS_NAMES
 from models.architectures import build_efficientnet_b0, build_mobilenet_v3, build_resnet50
 from utils.logger import get_logger
 
+try:
+    from training.train import WarmupCosineDecay
+except ImportError:
+    WarmupCosineDecay = None
+
 logger = get_logger("ModelRegistry")
 
 MODELS_MAP = {
@@ -29,13 +34,15 @@ def load_or_create_model(model_name, num_classes=len(CLASS_NAMES), compile_only=
     model_path = get_model_path(model_name)
     os.makedirs(SAVED_MODELS_DIR, exist_ok=True)
     
+    custom_objs = {"WarmupCosineDecay": WarmupCosineDecay} if WarmupCosineDecay else {}
+
     if os.path.exists(model_path):
         logger.info(f"Loading saved model {model_name} from {model_path}...")
         # Use temp copy to avoid file locking collisions with background training tasks
         temp_copy = os.path.join(SAVED_MODELS_DIR, f"temp_{uuid.uuid4().hex[:6]}.keras")
         try:
             shutil.copy2(model_path, temp_copy)
-            model = tf.keras.models.load_model(temp_copy)
+            model = tf.keras.models.load_model(temp_copy, custom_objects=custom_objs)
             logger.info(f"Model {model_name} loaded successfully.")
             if os.path.exists(temp_copy):
                 os.remove(temp_copy)
@@ -48,7 +55,7 @@ def load_or_create_model(model_name, num_classes=len(CLASS_NAMES), compile_only=
                 except Exception:
                     pass
             try:
-                model = tf.keras.models.load_model(model_path)
+                model = tf.keras.models.load_model(model_path, custom_objects=custom_objs)
                 logger.info(f"Direct model load for {model_name} succeeded.")
                 return model
             except Exception as direct_e:
