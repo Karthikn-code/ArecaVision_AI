@@ -38,12 +38,22 @@ def load_or_create_model(model_name, num_classes=len(CLASS_NAMES), compile_only=
 
     if os.path.exists(model_path):
         logger.info(f"Loading saved model {model_name} from {model_path}...")
-        # Use temp copy to avoid file locking collisions with background training tasks
         temp_copy = os.path.join(SAVED_MODELS_DIR, f"temp_{uuid.uuid4().hex[:6]}.keras")
         try:
             shutil.copy2(model_path, temp_copy)
-            model = tf.keras.models.load_model(temp_copy, custom_objects=custom_objs)
-            logger.info(f"Model {model_name} loaded successfully.")
+            try:
+                # Primary load with compile=False for instant weight restoration without custom schedule deserialization errors
+                model = tf.keras.models.load_model(temp_copy, compile=False)
+            except Exception:
+                model = tf.keras.models.load_model(temp_copy, custom_objects=custom_objs)
+            
+            # Recompile with standard Adam for metric evaluation & inference
+            model.compile(
+                optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+                loss="sparse_categorical_crossentropy",
+                metrics=["accuracy"]
+            )
+            logger.info(f"Model {model_name} loaded and compiled successfully.")
             if os.path.exists(temp_copy):
                 os.remove(temp_copy)
             return model
@@ -55,7 +65,16 @@ def load_or_create_model(model_name, num_classes=len(CLASS_NAMES), compile_only=
                 except Exception:
                     pass
             try:
-                model = tf.keras.models.load_model(model_path, custom_objects=custom_objs)
+                try:
+                    model = tf.keras.models.load_model(model_path, compile=False)
+                except Exception:
+                    model = tf.keras.models.load_model(model_path, custom_objects=custom_objs)
+                
+                model.compile(
+                    optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+                    loss="sparse_categorical_crossentropy",
+                    metrics=["accuracy"]
+                )
                 logger.info(f"Direct model load for {model_name} succeeded.")
                 return model
             except Exception as direct_e:
