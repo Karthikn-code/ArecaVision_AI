@@ -27,6 +27,7 @@ from streamlit_app.pages.dashboard import render_dashboard_page
 from streamlit_app.pages.about import render_about_page
 from streamlit_app.pages.documentation import render_documentation_page
 from streamlit_app.pages.settings import render_settings_page
+from streamlit_app.components.chatbot_widget import render_chatbot_widget
 
 import streamlit as st
 
@@ -127,6 +128,7 @@ def main():
         "🔬 Disease Detection": render_detection_page,
         "📜 Prediction History": render_history_page,
         "📈 Dashboard": render_dashboard_page,
+        "💬 ArecaBot Chat Assistant": lambda: render_chatbot_page(),
         "ℹ️ About": render_about_page,
         "📖 Documentation": render_documentation_page,
         "⚙️ Settings": render_settings_page
@@ -135,10 +137,24 @@ def main():
     selection = st.sidebar.radio("Navigation Menu", list(pages.keys()))
 
     st.sidebar.write("---")
+    
+    # Render persistent Floating Chatbot Widget in Sidebar
+    st.sidebar.markdown("### 🤖 ArecaBot Assistant")
+    with st.sidebar:
+        render_chatbot_widget()
+
+    st.sidebar.write("---")
     st.sidebar.caption("© 2026 ArecaVision AI System")
     st.sidebar.caption("Final Year AI & Data Science Project")
 
     pages[selection]()
+
+
+def render_chatbot_page():
+    st.markdown("<h2 style='color: #2E7559;'>💬 ArecaBot — AI Agronomist Assistant</h2>", unsafe_allow_html=True)
+    st.write("Ask any questions regarding Areca palm nut, leaf, trunk, and root health, organic remedies, fungicide dosages, or fertilizer schedules.")
+    st.write("---")
+    render_chatbot_widget()
 
 
 if __name__ == "__main__":
